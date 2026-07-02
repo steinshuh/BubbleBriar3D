@@ -91,14 +91,14 @@ func _build_scenery() -> void:
 	for data in _scenery_specs():
 		scenery_spawn_x[data["name"]] = -INF
 		for index in range(data["initial_count"]):
-			_spawn_scenery_panel(data, -play_width * 0.5 + index * data["spacing"])
+			_spawn_scenery_panel(data, index * data["spacing"])
 
 func _scenery_specs() -> Array[Dictionary]:
 	return [
-		{"name": "sky", "texture": SKY_TEXTURE, "z": -9.0, "y": 0.0, "speed_factor": 0.0, "scale": Vector3(0.028, 0.028, 0.028), "spacing": play_width, "initial_count": 1},
-		{"name": "hills", "texture": FAR_HILLS_TEXTURE, "z": -6.0, "y": -0.05, "speed_factor": 0.22, "scale": Vector3(0.018, 0.018, 0.018), "spacing": 9.6, "initial_count": 3},
-		{"name": "trees", "texture": NEAR_TREES_TEXTURE, "z": -3.0, "y": -0.88, "speed_factor": 0.55, "scale": Vector3(0.018, 0.018, 0.018), "spacing": 9.6, "initial_count": 3},
-		{"name": "ground", "texture": GROUND_TEXTURE, "z": -0.8, "y": -1.25, "speed_factor": 1.0, "scale": Vector3(0.018, 0.018, 0.018), "spacing": 9.6, "initial_count": 3},
+		{"name": "sky", "texture": SKY_TEXTURE, "z": -9.0, "y": 0.0, "speed_factor": 0.0, "spacing": play_width, "initial_count": 1},
+		{"name": "hills", "texture": FAR_HILLS_TEXTURE, "z": -6.0, "y": -0.05, "speed_factor": 0.22, "spacing": play_width, "initial_count": 3},
+		{"name": "trees", "texture": NEAR_TREES_TEXTURE, "z": -3.0, "y": -0.88, "speed_factor": 0.55, "spacing": play_width, "initial_count": 3},
+		{"name": "ground", "texture": GROUND_TEXTURE, "z": -0.8, "y": -1.25, "speed_factor": 1.0, "spacing": play_width, "initial_count": 3},
 	]
 
 func _spawn_scenery_panel(spec: Dictionary, x: float) -> void:
@@ -107,7 +107,7 @@ func _spawn_scenery_panel(spec: Dictionary, x: float) -> void:
 	panel.billboard = BaseMaterial3D.BILLBOARD_ENABLED
 	var speed := current_scroll_speed * float(spec["speed_factor"])
 	var left_limit := -play_width * 0.5 - float(spec["spacing"])
-	panel.setup(spec["texture"], x, spec["y"], spec["z"], spec["scale"], speed, left_limit)
+	panel.setup(spec["texture"], x, spec["y"], spec["z"], play_width, PLAY_HEIGHT, speed, left_limit)
 	panel.escaped.connect(_on_scenery_panel_escaped)
 	scenery_panels.append(panel)
 	add_child(panel)
