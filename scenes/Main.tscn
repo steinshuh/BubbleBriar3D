@@ -1,0 +1,40 @@
+[gd_scene load_steps=7 format=3 uid="uid://bubble_briar_3d_main"]
+
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_main"]
+[ext_resource type="PackedScene" path="res://scenes/Bubble.tscn" id="2_bubble"]
+[ext_resource type="AudioStream" path="res://assets/sounds/background1.wav" id="3_background_1"]
+[ext_resource type="AudioStream" path="res://assets/sounds/background2.wav" id="4_background_2"]
+[ext_resource type="AudioStream" path="res://assets/sounds/small_soft_bell_ring.wav" id="5_point_sound"]
+
+[sub_resource type="Environment" id="Environment_main"]
+background_mode = 1
+background_color = Color(0.67, 0.84, 0.95, 1)
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_energy = 1.0
+
+[node name="Main" type="Node3D"]
+script = ExtResource("1_main")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_main")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 16)
+projection = 1
+size = 7.2
+current = true
+
+[node name="Bubble" parent="." instance=ExtResource("2_bubble")]
+
+[node name="BackgroundMusic1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_background_1")
+volume_db = -9.0
+
+[node name="BackgroundMusic2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_background_2")
+volume_db = -9.0
+
+[node name="PointSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_point_sound")
+volume_db = -11.298

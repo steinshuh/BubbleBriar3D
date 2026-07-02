@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://bubble_briar_3d_bubble"]
+
+[ext_resource type="Script" path="res://scripts/bubble.gd" id="1_bubble"]
+[ext_resource type="Texture2D" path="res://assets/bubble_sheet.png" id="2_bubble_texture"]
+[ext_resource type="AudioStream" path="res://assets/sounds/bubble_popping.wav" id="3_pop_sound"]
+[ext_resource type="AudioStream" path="res://assets/sounds/soft_breeze.wav" id="4_breeze_sound"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_bubble"]
+radius = 0.31
+
+[node name="Bubble" type="CharacterBody3D"]
+script = ExtResource("1_bubble")
+collision_layer = 1
+collision_mask = 2
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+modulate = Color(1, 1, 1, 0.7)
+texture_filter = 0
+billboard = 1
+pixel_size = 0.0048
+texture = ExtResource("2_bubble_texture")
+hframes = 4
+vframes = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_bubble")
+
+[node name="PopSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_pop_sound")
+volume_db = -2.0
+
+[node name="BreezeSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_breeze_sound")
+volume_db = -6.0
