@@ -36,7 +36,6 @@ var best_score := 0
 var game_over := false
 var obstacles: Array[Area3D] = []
 var scenery_panels: Array[Sprite3D] = []
-var scenery_spawn_x := {}
 var current_background_music_index := 0
 
 var score_label: Label
@@ -87,9 +86,7 @@ func _update_world_bounds() -> void:
 	camera.size = PLAY_HEIGHT
 
 func _build_scenery() -> void:
-	scenery_spawn_x.clear()
 	for data in _scenery_specs():
-		scenery_spawn_x[data["name"]] = -INF
 		for index in range(data["initial_count"]):
 			_spawn_scenery_panel(data, index * data["spacing"])
 
@@ -111,7 +108,6 @@ func _spawn_scenery_panel(spec: Dictionary, x: float) -> void:
 	panel.escaped.connect(_on_scenery_panel_escaped)
 	scenery_panels.append(panel)
 	add_child(panel)
-	scenery_spawn_x[spec["name"]] = maxf(float(scenery_spawn_x.get(spec["name"], -INF)), x)
 
 func _update_scenery_spawns() -> void:
 	for panel in scenery_panels:
@@ -123,9 +119,16 @@ func _update_scenery_spawns() -> void:
 	for spec in _scenery_specs():
 		if float(spec["speed_factor"]) <= 0.0:
 			continue
-		var last_x := float(scenery_spawn_x.get(spec["name"], -INF))
-		if last_x < play_width * 0.5 + float(spec["spacing"]):
-			_spawn_scenery_panel(spec, last_x + float(spec["spacing"]))
+		var rightmost_x := _rightmost_panel_x(spec)
+		if rightmost_x < float(spec["spacing"]):
+			_spawn_scenery_panel(spec, rightmost_x + float(spec["spacing"]))
+
+func _rightmost_panel_x(spec: Dictionary) -> float:
+	var rightmost_x := -INF
+	for panel in scenery_panels:
+		if panel.texture == spec["texture"] and is_equal_approx(panel.global_position.z, spec["z"]):
+			rightmost_x = maxf(rightmost_x, panel.global_position.x)
+	return rightmost_x
 
 func _spec_for_panel(panel: Sprite3D) -> Dictionary:
 	for spec in _scenery_specs():
