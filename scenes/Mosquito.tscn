@@ -23,7 +23,6 @@ vframes = 2
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=926398394]
 shape = SubResource("SphereShape3D_mosquito")
 
-[node name="MosquitoSound" type="AudioStreamPlayer3D" parent="." unique_id=1601016741]
+[node name="MosquitoSound" type="AudioStreamPlayer" parent="." unique_id=1601016741]
 stream = ExtResource("3_mosquito_sound")
 volume_db = -36.0
-max_distance = 8.0

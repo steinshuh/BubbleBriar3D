@@ -4,7 +4,7 @@ signal escaped(obstacle)
 
 const MOSQUITO_ANIMATION_FRAME_COUNT := 8
 const MOSQUITO_ANIMATION_FRAME_TIME := 0.08
-const MOSQUITO_MAX_VOLUME_DB := -3.0
+const MOSQUITO_MAX_VOLUME_DB := 2.0
 const MOSQUITO_MIN_VOLUME_DB := -36.0
 const MOSQUITO_MAX_AUDIBLE_DISTANCE := 7.2
 
@@ -16,7 +16,7 @@ var animation_time := 0.0
 var animation_frame := 0
 
 @onready var sprite := $Sprite3D as Sprite3D
-@onready var mosquito_sound := $MosquitoSound as AudioStreamPlayer3D
+@onready var mosquito_sound := $MosquitoSound as AudioStreamPlayer
 
 func setup(start_x: float, width: float, height: float, floor_y: float, move_speed: float) -> void:
 	speed = move_speed
