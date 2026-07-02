@@ -22,9 +22,7 @@ func setup(start_x: float, width: float, height: float, floor_y: float, move_spe
 	speed = move_speed
 	escape_x = -width * 0.5 - 1.2
 	play_height = height
-	global_position.x = start_x
-	global_position.y = randf_range(-height * 0.12, height * 0.26)
-	global_position.z = 0.0
+	position = Vector3(start_x, randf_range(-height * 0.12, height * 0.26), 0.0)
 
 func set_bubble_target(target: Node3D) -> void:
 	bubble_target = target

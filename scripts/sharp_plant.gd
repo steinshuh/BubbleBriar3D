@@ -10,7 +10,7 @@ func setup(start_x: float, width: float, height: float, floor_position_y: float,
 	speed = move_speed
 	escape_x = -width * 0.5 - 1.2
 	floor_y = floor_position_y
-	global_position = Vector3(start_x, floor_y - 0.12, 0.0)
+	position = Vector3(start_x, floor_y - 0.12, 0.0)
 
 func _ready() -> void:
 	body_entered.connect(_on_body_entered)
