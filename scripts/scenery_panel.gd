@@ -7,7 +7,8 @@ var escape_x := -10.0
 
 func setup(texture_resource: Texture2D, start_x: float, y: float, z_distance: float, target_width: float, target_height: float, move_speed: float, left_limit: float) -> void:
 	render_priority = -100
-	alpha_cut = SpriteBase3D.ALPHA_CUT_OPAQUE_PREPASS
+	alpha_cut = SpriteBase3D.ALPHA_CUT_DISCARD
+	alpha_scissor_threshold = 0.5
 	texture = texture_resource
 	position = Vector3(start_x, y, z_distance)
 	var width_scale := target_width / maxf(float(texture_resource.get_width()), 1.0)
