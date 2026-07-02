@@ -1,24 +1,23 @@
-[gd_scene load_steps=5 format=3 uid="uid://bubble_briar_3d_sharp_plant"]
+[gd_scene format=3 uid="uid://bv78mgo74x7ie"]
 
-[ext_resource type="Script" path="res://scripts/sharp_plant.gd" id="1_sharp_plant"]
-[ext_resource type="Texture2D" path="res://assets/sharp_plant.png" id="2_sharp_plant_texture"]
+[ext_resource type="Script" uid="uid://shwbkl61rrok" path="res://scripts/sharp_plant.gd" id="1_sharp_plant"]
+[ext_resource type="Texture2D" uid="uid://bqs6npcdy7b36" path="res://assets/sharp_plant.png" id="2_sharp_plant_texture"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sharp_plant"]
 radius = 0.24
-height = 1.28
+height = 1.2933203
 
-[node name="SharpPlant" type="Area3D"]
-script = ExtResource("1_sharp_plant")
+[node name="SharpPlant" type="Area3D" unique_id=1292225929]
 collision_layer = 2
-collision_mask = 1
+script = ExtResource("1_sharp_plant")
 
-[node name="Sprite3D" type="Sprite3D" parent="."]
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=1601975781]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, 0)
-texture_filter = 0
+pixel_size = 0.0009
 billboard = 1
-pixel_size = 0.00026
+texture_filter = 0
 texture = ExtResource("2_sharp_plant_texture")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0.52, 0)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=577020047]
+transform = Transform3D(1, 0, 0, 0, 0.99973583, 0.022983987, 0, -0.022983987, 0.99973583, 0, 0.52, 0.0066601634)
 shape = SubResource("CapsuleShape3D_sharp_plant")
