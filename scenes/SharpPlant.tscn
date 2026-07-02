@@ -16,7 +16,7 @@ collision_mask = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, 0)
 texture_filter = 0
 billboard = 1
-pixel_size = 0.0026
+pixel_size = 0.00026
 texture = ExtResource("2_sharp_plant_texture")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
