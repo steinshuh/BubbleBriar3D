@@ -94,7 +94,7 @@ func _scenery_specs() -> Array[Dictionary]:
 	return [
 		{"name": "sky", "texture": SKY_TEXTURE, "z": -9.0, "y": 0.0, "speed_factor": 0.0, "spacing": play_width, "initial_count": 1},
 		{"name": "hills", "texture": FAR_HILLS_TEXTURE, "z": -6.0, "y": -0.05, "speed_factor": 0.22, "spacing": play_width, "initial_count": 3},
-		{"name": "trees", "texture": NEAR_TREES_TEXTURE, "z": -3.0, "y": -0.88, "speed_factor": 0.55, "spacing": play_width, "initial_count": 3},
+		{"name": "trees", "texture": NEAR_TREES_TEXTURE, "z": -3.0, "y": -1.6, "speed_factor": 0.55, "spacing": play_width, "initial_count": 3},
 		{"name": "ground", "texture": GROUND_TEXTURE, "z": -0.8, "y": 0.0, "speed_factor": 1.0, "spacing": play_width, "initial_count": 3},
 	]
 
